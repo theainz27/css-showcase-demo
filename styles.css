@@ -6,6 +6,7 @@
     --primary: #3b82f6;
     --secondary: #8b5cf6;
     --accent: #ec4899;
+    --shape-color: rgba(255, 255, 255, 0.03);
 }
 
 * {
@@ -31,7 +32,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: -1;
+    z-index: -2;
     overflow: hidden;
 }
 
@@ -70,9 +71,132 @@ body {
 }
 
 @keyframes float {
-    0% { transform: translate(0, 0) scale(1); }
-    100% { transform: translate(30px, 50px) scale(1.1); }
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    100% {
+        transform: translate(30px, 50px) scale(1.1);
+    }
 }
+
+/* Flying Shapes */
+.flying-shapes {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.shape {
+    position: absolute;
+    background: var(--shape-color);
+    backdrop-filter: blur(2px);
+    animation: fly 20s linear infinite;
+}
+
+.shape-1 {
+    width: 50px;
+    height: 50px;
+    top: 10%;
+    left: 10%;
+    animation-duration: 25s;
+}
+
+.shape-2 {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    top: 20%;
+    right: 20%;
+    animation-duration: 30s;
+    animation-delay: -5s;
+}
+
+.shape-3 {
+    width: 60px;
+    height: 60px;
+    transform: rotate(45deg);
+    top: 80%;
+    left: 20%;
+    animation-duration: 22s;
+    animation-delay: -10s;
+}
+
+.shape-4 {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    bottom: 10%;
+    right: 10%;
+    animation-duration: 28s;
+    animation-delay: -2s;
+}
+
+.shape-5 {
+    width: 100px;
+    height: 100px;
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    top: 50%;
+    left: 50%;
+    animation-duration: 35s;
+    animation-delay: -15s;
+    background: rgba(59, 130, 246, 0.05);
+}
+
+.shape-6 {
+    width: 30px;
+    height: 30px;
+    top: 30%;
+    left: 80%;
+    animation-duration: 18s;
+    background: rgba(236, 72, 153, 0.05);
+}
+
+.shape-7 {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    top: 70%;
+    right: 60%;
+    animation-duration: 40s;
+    animation-delay: -8s;
+}
+
+.shape-8 {
+    width: 20px;
+    height: 20px;
+    top: 15%;
+    right: 40%;
+    animation-duration: 15s;
+}
+
+@keyframes fly {
+    0% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+
+    25% {
+        transform: translate(100px, 50px) rotate(90deg);
+    }
+
+    50% {
+        transform: translate(50px, 150px) rotate(180deg);
+    }
+
+    75% {
+        transform: translate(-50px, 50px) rotate(270deg);
+    }
+
+    100% {
+        transform: translate(0, 0) rotate(360deg);
+    }
+}
+
 
 /* Hero Section */
 .hero {
@@ -92,8 +216,13 @@ body {
 }
 
 @keyframes hue-rotate {
-    from { filter: hue-rotate(0deg); }
-    to { filter: hue-rotate(360deg); }
+    from {
+        filter: hue-rotate(0deg);
+    }
+
+    to {
+        filter: hue-rotate(360deg);
+    }
 }
 
 .subtitle {
@@ -166,7 +295,10 @@ body {
 .btn-glow::before {
     content: '';
     position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     border-radius: 8px;
     background: linear-gradient(45deg, var(--primary), var(--secondary));
     filter: blur(10px);
@@ -186,7 +318,8 @@ body {
 /* 2. 3D Flip */
 .flip-container {
     perspective: 1000px;
-    background: transparent; /* Container is transparent */
+    background: transparent;
+    /* Container is transparent */
     border: none;
     padding: 0;
 }
@@ -199,14 +332,15 @@ body {
     transition: transform 0.6s;
     transform-style: preserve-3d;
     border-radius: 16px;
-    box-shadow: 0 4px 30px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 }
 
 .flip-container:hover .flipper {
     transform: rotateY(180deg);
 }
 
-.front, .back {
+.front,
+.back {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -252,14 +386,20 @@ body {
 }
 
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 /* 4. Animated Border */
 .border-anim {
     position: relative;
-    background: #0f172a; /* Match body bg to hide pseudo element center */
+    background: #0f172a;
+    /* Match body bg to hide pseudo element center */
     z-index: 0;
     border: none;
 }
@@ -267,7 +407,10 @@ body {
 .border-anim::before {
     content: '';
     position: absolute;
-    top: -2px; left: -2px; right: -2px; bottom: -2px;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
     background: conic-gradient(from 0deg, var(--primary), var(--secondary), var(--accent), var(--primary));
     z-index: -1;
     border-radius: 18px;
@@ -287,14 +430,19 @@ body {
 }
 
 @keyframes spin-border {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 /* 5. Floating */
 .floating-card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
 }
 
 .float-icon {
@@ -304,8 +452,15 @@ body {
 }
 
 @keyframes float-icon {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-15px); }
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-15px);
+    }
 }
 
 /* 6. Hover Reveal */
@@ -319,8 +474,11 @@ body {
 
 .reveal-overlay {
     position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0,0,0,0.8);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -343,6 +501,151 @@ body {
 
 .reveal-card:hover .reveal-overlay span {
     transform: scale(1);
+}
+
+/* 7. Glitch Effect */
+.glitch-card:hover .glitch {
+    animation: glitch 0.3s cubic-bezier(.25, .46, .45, .94) both infinite;
+    color: var(--primary);
+}
+
+.glitch {
+    position: relative;
+}
+
+.glitch::before,
+.glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.8;
+}
+
+.glitch::before {
+    color: var(--secondary);
+    z-index: -1;
+    animation: glitch-anim-1 2s infinite linear alternate-reverse;
+}
+
+.glitch::after {
+    color: var(--accent);
+    z-index: -2;
+    animation: glitch-anim-2 3s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-anim-1 {
+    0% {
+        clip-path: inset(20% 0 80% 0);
+        transform: translate(-2px, 1px);
+    }
+
+    20% {
+        clip-path: inset(60% 0 10% 0);
+        transform: translate(2px, -1px);
+    }
+
+    40% {
+        clip-path: inset(40% 0 50% 0);
+        transform: translate(-2px, 2px);
+    }
+
+    60% {
+        clip-path: inset(80% 0 5% 0);
+        transform: translate(2px, -2px);
+    }
+
+    80% {
+        clip-path: inset(10% 0 70% 0);
+        transform: translate(-1px, 1px);
+    }
+
+    100% {
+        clip-path: inset(30% 0 20% 0);
+        transform: translate(1px, -1px);
+    }
+}
+
+@keyframes glitch-anim-2 {
+    0% {
+        clip-path: inset(10% 0 60% 0);
+        transform: translate(2px, -1px);
+    }
+
+    20% {
+        clip-path: inset(80% 0 5% 0);
+        transform: translate(-2px, 2px);
+    }
+
+    40% {
+        clip-path: inset(30% 0 20% 0);
+        transform: translate(2px, 1px);
+    }
+
+    60% {
+        clip-path: inset(10% 0 80% 0);
+        transform: translate(-1px, -2px);
+    }
+
+    80% {
+        clip-path: inset(50% 0 30% 0);
+        transform: translate(1px, 2px);
+    }
+
+    100% {
+        clip-path: inset(70% 0 10% 0);
+        transform: translate(-2px, -1px);
+    }
+}
+
+/* 8. Pulse Effect */
+.pulse-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.pulse-circle {
+    width: 50px;
+    height: 50px;
+    background: var(--secondary);
+    border-radius: 50%;
+    margin-bottom: 1rem;
+    position: relative;
+}
+
+.pulse-circle::before,
+.pulse-circle::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 2px solid var(--secondary);
+    animation: pulse-ring 2s linear infinite;
+}
+
+.pulse-circle::after {
+    animation-delay: 1s;
+}
+
+@keyframes pulse-ring {
+    0% {
+        width: 100%;
+        height: 100%;
+        opacity: 1;
+    }
+
+    100% {
+        width: 300%;
+        height: 300%;
+        opacity: 0;
+    }
 }
 
 /* Footer */
