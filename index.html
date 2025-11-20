@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Tricks Showcase</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="background-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <header class="hero">
+        <h1 class="gradient-text">CSS Magic</h1>
+        <p class="subtitle">Exploring modern styling techniques</p>
+    </header>
+
+    <main class="container">
+        <div class="grid">
+            <!-- Card 1: Glassmorphism -->
+            <div class="card glass">
+                <div class="card-content">
+                    <h2>Glassmorphism</h2>
+                    <p>Backdrop filters and semi-transparent layers create a frosted glass effect.</p>
+                    <button class="btn-glow">Hover Me</button>
+                </div>
+            </div>
+
+            <!-- Card 2: 3D Flip -->
+            <div class="card flip-container">
+                <div class="flipper">
+                    <div class="front">
+                        <h2>3D Flip</h2>
+                        <p>Hover to reveal the back!</p>
+                    </div>
+                    <div class="back">
+                        <h2>Revealed!</h2>
+                        <p>Using preserve-3d and rotateY.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3: Neon Glow -->
+            <div class="card neon">
+                <h2>Neon Glow</h2>
+                <p>Box-shadows and text-shadows for a cyberpunk vibe.</p>
+                <div class="loader"></div>
+            </div>
+
+            <!-- Card 4: Animated Border -->
+            <div class="card border-anim">
+                <div class="inner">
+                    <h2>Animated Border</h2>
+                    <p>Conic gradients and masks for a moving border effect.</p>
+                </div>
+            </div>
+            
+             <!-- Card 5: Floating Elements -->
+             <div class="card floating-card">
+                <div class="float-icon">🚀</div>
+                <h2>Floating</h2>
+                <p>Simple keyframe animations add life to static elements.</p>
+            </div>
+
+             <!-- Card 6: Hover Reveal -->
+             <div class="card reveal-card">
+                <div class="reveal-content">
+                    <h2>Hover Reveal</h2>
+                    <p>Transform and opacity transitions.</p>
+                </div>
+                <div class="reveal-overlay">
+                    <span>Peekaboo!</span>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>Built with &hearts; and CSS</p>
+    </footer>
+</body>
+</html>

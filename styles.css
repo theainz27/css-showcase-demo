@@ -1,0 +1,354 @@
+:root {
+    --bg-color: #0f172a;
+    --text-color: #f8fafc;
+    --card-bg: rgba(255, 255, 255, 0.05);
+    --card-border: rgba(255, 255, 255, 0.1);
+    --primary: #3b82f6;
+    --secondary: #8b5cf6;
+    --accent: #ec4899;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    overflow-x: hidden;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Background Blobs */
+.background-blobs {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.6;
+    animation: float 20s infinite alternate;
+}
+
+.blob-1 {
+    width: 400px;
+    height: 400px;
+    background: var(--primary);
+    top: -100px;
+    left: -100px;
+}
+
+.blob-2 {
+    width: 500px;
+    height: 500px;
+    background: var(--secondary);
+    bottom: -150px;
+    right: -150px;
+    animation-delay: -5s;
+}
+
+.blob-3 {
+    width: 300px;
+    height: 300px;
+    background: var(--accent);
+    top: 40%;
+    left: 40%;
+    animation-delay: -10s;
+}
+
+@keyframes float {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(30px, 50px) scale(1.1); }
+}
+
+/* Hero Section */
+.hero {
+    text-align: center;
+    padding: 4rem 1rem;
+}
+
+.gradient-text {
+    font-size: 4rem;
+    font-weight: 900;
+    background: linear-gradient(to right, var(--primary), var(--secondary), var(--accent));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 0.5rem;
+    animation: hue-rotate 10s infinite linear;
+}
+
+@keyframes hue-rotate {
+    from { filter: hue-rotate(0deg); }
+    to { filter: hue-rotate(360deg); }
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    color: #94a3b8;
+}
+
+/* Layout */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    flex: 1;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+/* Generic Card Styles */
+.card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
+    padding: 2rem;
+    min-height: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.card h2 {
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.card p {
+    color: #cbd5e1;
+    line-height: 1.5;
+}
+
+/* 1. Glassmorphism */
+.glass {
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+.btn-glow {
+    margin-top: 1.5rem;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    background: linear-gradient(45deg, var(--primary), var(--secondary));
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 1;
+}
+
+.btn-glow::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    border-radius: 8px;
+    background: linear-gradient(45deg, var(--primary), var(--secondary));
+    filter: blur(10px);
+    opacity: 0;
+    z-index: -1;
+    transition: opacity 0.3s ease;
+}
+
+.btn-glow:hover {
+    transform: translateY(-2px);
+}
+
+.btn-glow:hover::before {
+    opacity: 0.7;
+}
+
+/* 2. 3D Flip */
+.flip-container {
+    perspective: 1000px;
+    background: transparent; /* Container is transparent */
+    border: none;
+    padding: 0;
+}
+
+.flipper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0,0,0,0.1);
+}
+
+.flip-container:hover .flipper {
+    transform: rotateY(180deg);
+}
+
+.front, .back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 16px;
+    padding: 2rem;
+    border: 1px solid var(--card-border);
+}
+
+.front {
+    background: var(--card-bg);
+    backdrop-filter: blur(10px);
+}
+
+.back {
+    background: linear-gradient(135deg, var(--secondary), var(--accent));
+    transform: rotateY(180deg);
+}
+
+/* 3. Neon Glow */
+.neon {
+    border: 1px solid var(--accent);
+    box-shadow: 0 0 10px var(--accent), inset 0 0 10px var(--accent);
+}
+
+.neon h2 {
+    text-shadow: 0 0 5px var(--accent), 0 0 10px var(--accent);
+}
+
+.loader {
+    width: 40px;
+    height: 40px;
+    border: 4px solid transparent;
+    border-top: 4px solid var(--accent);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-top: 1rem;
+    box-shadow: 0 0 10px var(--accent);
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* 4. Animated Border */
+.border-anim {
+    position: relative;
+    background: #0f172a; /* Match body bg to hide pseudo element center */
+    z-index: 0;
+    border: none;
+}
+
+.border-anim::before {
+    content: '';
+    position: absolute;
+    top: -2px; left: -2px; right: -2px; bottom: -2px;
+    background: conic-gradient(from 0deg, var(--primary), var(--secondary), var(--accent), var(--primary));
+    z-index: -1;
+    border-radius: 18px;
+    animation: spin-border 4s linear infinite;
+}
+
+.border-anim .inner {
+    background: var(--bg-color);
+    width: 100%;
+    height: 100%;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+}
+
+@keyframes spin-border {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* 5. Floating */
+.floating-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+}
+
+.float-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    animation: float-icon 3s ease-in-out infinite;
+}
+
+@keyframes float-icon {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+}
+
+/* 6. Hover Reveal */
+.reveal-card {
+    position: relative;
+}
+
+.reveal-content {
+    transition: opacity 0.3s ease;
+}
+
+.reveal-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: 16px;
+}
+
+.reveal-overlay span {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--accent);
+    transform: scale(0.5);
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.reveal-card:hover .reveal-overlay {
+    opacity: 1;
+}
+
+.reveal-card:hover .reveal-overlay span {
+    transform: scale(1);
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 2rem;
+    color: #64748b;
+    margin-top: auto;
+}
